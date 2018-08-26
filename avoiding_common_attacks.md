@@ -1,4 +1,4 @@
-# Chainskills - Code Structure to Avoid Common Attacks
+# Chainlist - Code Structure to Avoid Common Attacks
 
 Several checks and enhancements have been made in this smart contract to lower the possibility of attacks, and to increase the security in this application as much as possible. Below are the checks and changes made listed by popular security/attack type. [This checklist](https://www.kingoftheether.com/contract-safety-checklist.html) was used to ensure that most common attacks and errors were addressed in the design and implementation of this contract.
 
