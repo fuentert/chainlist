@@ -1,4 +1,4 @@
-# Chainskills - Design Decisions and Patterns
+# Chainlist - Design Decisions and Patterns
 
 The primary focus of this contract was to be robust, simple, and reliable. Due to that, the primary objective was to have the minimal amount of code possible in the application, while still maintaining user security. Below are some design considerations taken when building out the smart contract. [Module 10, Lesson 6](https://courses.consensys.net/courses/course-v1:ConsenSysAcademy+2018DP+1/courseware/6ad0b7c56c8947a2b101cb916896fb9f/edd7e596883247cbb04e5145b3508467/?activate_block_id=block-v1%3AConsenSysAcademy%2B2018DP%2B1%2Btype%40sequential%2Bblock%40edd7e596883247cbb04e5145b3508467) and [This solidity documentation](https://solidity.readthedocs.io/en/develop/common-patterns.html) were used as inspiration on what common patterns to use.
 
