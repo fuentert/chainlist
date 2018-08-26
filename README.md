@@ -1,4 +1,4 @@
-# Chainlist - Consensys Certification Final Project
+# Chainlist - ConsenSys Certification Final Project
 
 This is a final project submission for the Consensys certification.
 
