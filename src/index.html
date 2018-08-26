@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>ChainList</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Application -->
+  <link href="css/app.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>ChainList</h1>
+      <h2>Your Marketplace on the Blockchain</h2>
+    </div>
+
+    <div class="col-md-12" id="article-list">
+      <div class="row">
+        <div class="col-lg-12">
+          <p id="account" class="welcome pull-right"></p>
+          <p id="accountBalance" class="welcome pull-left"></p>
+        </div>
+      </div>
+
+      <div class="row panel panel-default" id="toggleButtons">
+        <div class="panel-heading clearfix">
+          <div class="panel-title">
+            <button class="btn btn-info btn-lg btn-addSO pull-right" data-toggle="modal" data-target="#addStoreOwner">Add Store Owner</button>
+            <button class="btn btn-info btn-lg btn-addS pull-right" data-toggle="modal" data-target="#addStore">Add Store</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="var-storage" id="storage">
+        <h4 class="selected-store hide"></h4>
+        <h4 class="selected-article hide"></h4>
+      </div>
+
+      <div id="storesRow" class="row">
+        <!-- STORES LOAD HERE -->
+      </div>
+    </div>
+  </div>
+
+  <div id="storeTemplate" style="display: none;">
+    <div class="row-lg-12">
+      <div class="panel panel-default panel-article">
+        <div class="panel-heading">
+          <h3 class="store-panel-id hide"></h3>
+          <h3 class="store-panel-title pull-left"></h3>
+          <h3 class="store-owner-address pull-right"></h3>
+        </div>
+        <div class="panel-body">
+          <br />
+          <h3 class="store-available-articles"></h3>
+        </div>
+        <div class="panel-footer">
+          <button type="button" class="btn btn-primary btn-success btn-show-articles" onclick="App.setStoreNum(); App.displayArticles(); location.href='articles.html'; return false; ">Browse Store</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal form to add a store owner -->
+  <div class="modal fade" id="addStoreOwner" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add a Store Owner</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="article_name">Enter the new store owner below</label>
+                  <input type="text" class="form-control" id="new_owner" placeholder="Enter the ETH address">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.addOwner(); return false;">Submit</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal form to add a store -->
+  <div class="modal fade" id="addStore" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add a Store</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="article_name">Enter a name for the new store</label>
+                  <input type="text" class="form-control" id="store_name" placeholder="Name goes here">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.addStore(); return false;">Submit</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer" class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="navbar-inner navbar-content-center text-center">
+      </div>
+    </nav>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

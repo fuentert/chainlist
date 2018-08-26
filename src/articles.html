@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Store Articles</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Application -->
+  <link href="css/app.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>ChainList</h1>
+      <h2>Your Marketplace on the Blockchain</h2>
+    </div>
+
+    <div class="col-md-12" id="article-list">
+      <div class="row">
+        <div class="col-lg-12">
+          <p id="account" class="welcome pull-right"></p>
+          <p id="accountBalance" class="welcome pull-left"></p>
+        </div>
+      </div>
+
+      <div class="row panel panel-default" id="toggleButtons">
+        <div class="panel-heading clearfix">
+          <div class="panel-title">
+            <button class="btn btn-info btn-lg btn-add-article pull-right" onclick="App.setStoreNum(); return false;" data-toggle="modal" data-target="#addArticle">Add Article</button>
+            <button class="btn btn-info btn-lg btn-toggle-page pull-left" onclick="location.href='index.html'; return false; ">View Available Stores</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="var-storage" id="storage">
+        <h4 class="selected-store hide"></h4>
+        <h4 class="selected-article hide"></h4>
+      </div>
+
+      <div id="articlesRow" class="row">
+        <!-- STORES LOAD HERE -->
+      </div>
+    </div>
+  </div>
+
+  <div id="articleTemplate" style="display: none;">
+    <div class="row-lg-12">
+      <div class="panel panel-default panel-article">
+        <div class="panel-heading">
+          <h3 class="panel-title"></h3>
+        </div>
+        <div class="panel-body">
+          <strong>Description</strong>: <span class="article-description"></span><br/>
+          <strong>Price (ETH)</strong>: <span class="article-price"></span><br/>
+          <strong>Number of Articles</strong>: <span class="article-number"></span><br/>
+          <h4 class="article-panel-id hide"></h4>
+        </div>
+        <div class="panel-footer">
+          <button type="button" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticleNum(); return false;" data-toggle="modal" data-target="#buyArticle">Buy Article</button>
+          <button type="button" class="btn btn-primary btn-success btn-edit" onclick="App.setArticleNum(); return false;" data-toggle="modal" data-target="#editArticle">Edit Article</button>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal form to buy an article -->
+  <div class="modal fade" id="buyArticle" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Buy the Article</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="edited_articleNum">Number of articles to buy</label>
+                  <input type="number" class="form-control" id="buy_article_number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success btn-buy-article" data-dismiss="modal" onclick="App.buyArticle(); return false;">Submit</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal form to edit an article -->
+  <div class="modal fade" id="editArticle" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit the Article</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="edited_article_name">New article name</label>
+                  <input type="text" class="form-control" id="edited_article_name" placeholder="Enter the name of your article">
+                </div>
+                <div class="form-group">
+                  <label for="edited_description">New description</label>
+                  <textarea type="text" class="form-control vresize" id="edited_article_description" placeholder="Describe your article" maxlength="255"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="edited_price">New price in ETH</label>
+                  <input type="number" class="form-control" id="edited_article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+                <div class="form-group">
+                  <label for="edited_articleNum">New number of articles</label>
+                  <input type="number" class="form-control" id="edited_article_number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success btn-edit-article" data-dismiss="modal" onclick="App.editArticle(); return false;">Submit</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal form to add an article -->
+  <div class="modal fade" id="addArticle" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add an Article</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="article_name">Article name</label>
+                  <input type="text" class="form-control" id="article_name" placeholder="Enter the name of your article">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your article" maxlength="255"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="price">Price in ETH</label>
+                  <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+                <div class="form-group">
+                  <label for="articleNum">Number of Articles</label>
+                  <input type="number" class="form-control" id="article_number" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.addArticle(); return false;">Submit</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer" class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="navbar-inner navbar-content-center text-center">
+      </div>
+    </nav>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
