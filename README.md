@@ -98,4 +98,4 @@ All versioning will be done on github. Please see the tags for versioning.
 * **Rafael Fuentes** - *Initial work* - [fuentert](https://github.com/fuentert)
 
 ## Acknowledgements
-The skeleton of the app was used from [this udemy course](https://www.udemy.com/getting-started-with-ethereum-solidity-development/) I purchased and completed nearly a year ago to save time. All key functionality has been modified to meet the needs of this project, and my own desires for how I wanted the app to operate.
+I used the skeleton of the app I built from duringthe duration of [this udemy course](https://www.udemy.com/getting-started-with-ethereum-solidity-development/) I purchased and completed nearly a year ago to save time. All key functionality has been modified to meet the needs of this project, and my own desires for how I wanted the app to operate.
