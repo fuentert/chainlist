@@ -63,6 +63,9 @@ If Localhost 8545 is not there, you will have to add it on the Custom RPC option
 #### IMPORTANT:
 If you're getting errors with the nonce, you will have to reset your account on metamask. Simply go to the settings, scroll to the bottom, and refresh.
 
+### Note for Switching Accounts on Metamask
+While this application automatically refreshes whenever a transaction is made, this app does not refresh when the user switches accounts on metamask. Whenever a user switches accounts on metamask, please refresh the webpage. All other times, the webpage will refresh automatically.
+
 #### Compile and migrate the contracts
 ```
 truffle migrate --compile-all --reset --network ganache
